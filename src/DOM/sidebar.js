@@ -20,7 +20,7 @@ export function sidebar() {
 
   const todoItems = document.createElement("ul");
   todoItems.classList.add("todo-items");
-  createNavItems(todoItems)
+  createNavItem(todoItems)
 
   const projectsWrapper = document.createElement("div")
   projectsWrapper.classList.add("projects");
@@ -43,24 +43,24 @@ export function sidebar() {
   sidebarNav.append(logo, addNewbtn, todoItems, projectsWrapper);
 }
 
-function createNavItems(todoItems) {
-  const navigationDetails = [
+function createNavItem(todoItems) {
+
+  const navItems = 
     {
       icon: '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><title>inbox</title><path fill="currentColor" fill-rule="evenodd" d="M19,15H15A3,3 0 0,1 12,18A3,3 0 0,1 9,15H5V5H19M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>',
       text: "Inbox",
       projectName: "Default",
       id: "41066c2a-0f8b-422b-96bc-0e88c68a1ef4"
     }
-  ]
-
-  const project = getProjectIdByName("Default")
-  if (project === null) {
-    setProjects([{id: "41066c2a-0f8b-422b-96bc-0e88c68a1ef4", projectName: "Default"}])
-  }
   
-  navigationDetails.forEach((navItems) => {
+    const project = getProjectIdByName("Default")
+    if (project === null) {
+      setProjects([{id: "41066c2a-0f8b-422b-96bc-0e88c68a1ef4", projectName: "Default"}])
+    }
 
+    console.log(getProjects());
     
+  
     const navItem = document.createElement("li")
     navItem.id = navItems.id;
     navItem.dataset.projectName = navItems.projectName
@@ -74,7 +74,6 @@ function createNavItems(todoItems) {
     handleProjectClick(navItem)
     todoItems.append(navItem)
 
-  })
 }
 
 function getProjectItems(projectsList) {
