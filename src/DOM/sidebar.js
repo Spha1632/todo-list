@@ -1,8 +1,9 @@
 import { addProject, deleteProject, getProjectIdByName } from "../modules/projects.js";
-import { getProjects } from "../modules/projectStorage.js";
+import { getProjects, setProjects } from "../modules/projectStorage.js";
 import { getTodoByProjectName } from "../modules/todo.js";
 import { createAddTodoBtn } from "./addNewTodoBtn.js";
 import { projectsPage } from "./projectsPage.js";
+import { v4 as uuidv4 } from 'uuid';
 
 export function sidebar() {
 
@@ -47,17 +48,22 @@ function createNavItems(todoItems) {
     {
       icon: '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><title>inbox</title><path fill="currentColor" fill-rule="evenodd" d="M19,15H15A3,3 0 0,1 12,18A3,3 0 0,1 9,15H5V5H19M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>',
       text: "Inbox",
-      id: "Default"
+      projectName: "Default",
+      id: "41066c2a-0f8b-422b-96bc-0e88c68a1ef4"
     }
   ]
 
+  const project = getProjectIdByName("Default")
+  if (project === null) {
+    setProjects([{id: "41066c2a-0f8b-422b-96bc-0e88c68a1ef4", projectName: "Default"}])
+  }
+  
   navigationDetails.forEach((navItems) => {
 
-    const projectId = getProjectIdByName(navItems.id)
     
     const navItem = document.createElement("li")
-    navItem.id = projectId;
-    navItem.dataset.projectName = navItems.id
+    navItem.id = navItems.id;
+    navItem.dataset.projectName = navItems.projectName
     const navIcon = document.createElement("span")
     navIcon.innerHTML = navItems.icon
     const navText = document.createElement("span")
@@ -124,7 +130,7 @@ function handleProjectAddClick(button) {
       handleAddProjectSubmit(form)
       form.classList.add("add-new-project")
       const projectInput = document.createElement("input");
-      projectInput.focus = true
+      projectInput.focus();
       projectInput.required = true;
       projectInput.classList.add("projects-input")
       projectInput.placeholder = "Enter project name";
@@ -148,7 +154,7 @@ function handleAddProjectSubmit(form) {
     const projectName = document.querySelector(".projects-input").value;
 
     if (projectName.toLowerCase() != page.toLowerCase()) {
-      const todos = getTodoByProjectName;
+      const todos = getTodoByProjectName(projectName);;
 
       addProject(projectName)
       form.remove();
