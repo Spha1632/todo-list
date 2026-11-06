@@ -1,4 +1,276 @@
+:root {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family: norse-font;
+  src: url(./norse-font/Norsebold.otf);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
-    background-color: crimson;
-    color: white;
+  display: grid;
+  grid-template-columns: 255px 1fr;
+  min-height: 100dvh;
+  max-width: 100dvw;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  background-color: black;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px;
+  padding-top: 0;
+  max-height: 100dvh;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 2.5rem;
+  font-family: norse-font, Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.sidebar .add-todo {
+  margin-bottom: 12px;
+}
+
+.sidebar button {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  color: white;
+  background: none;
+  border: none;
+  padding-left: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.sidebar ul {
+  padding: 0;
+  padding-left: 12px;
+  padding-bottom: 12px;
+  list-style: none;
+}
+
+.sidebar ul li {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  margin-bottom: 12px;
+}
+
+.sidebar .projects li {
+  padding-left: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 32px;
+}
+
+.sidebar .projects-heading {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 32px;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projects-heading-icon, .project-icon {
+  display: none;
+}
+
+.sidebar .projects-heading:hover .projects-heading-icon,
+.sidebar .project-item:hover .project-icon {
+  display: inline;
+  cursor: pointer;
+}
+
+.add-new-project {
+  border: 1px solid grey;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 5px;
+}
+
+.projects-input {
+  width: 100%;
+  height: 22px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  outline: none;
+  border: none;
+  background: none;
+  color: white;
+  margin: 0;
+}
+
+/* CONTAINER */
+
+.container {
+  padding-top: 40px;
+  padding-left: 56px;
+  padding-right: 56px;
+  padding-bottom: 86px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container .heading {
+  margin-bottom: 24px;
+}
+
+/* TODO ITEMS */
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.todo-item div {
+  display: flex;
+  align-items: start;
+  column-gap: 4px;
+  font-size: 1rem;
+}
+
+.todo-item .details {
+  padding-left: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item .details > div {
+  margin-bottom: 3px;
+}
+
+.todo-item .details .title {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+.todo-item .details .description {
+  opacity: 0.6;
+}
+.todo-item .details .due-date {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-weight: 600;
+  color: blue;
+}
+
+.todo-items .buttons {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.todo-item .buttons button {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.priority {
+  border-left: 3px solid transparent;
+  height: 100%;
+  padding-right: 6px;
+}
+
+.checkbox {
+  margin-top: 2px;
+}
+
+.todo-items .form {
+  display: flex;
+}
+
+.no-task {
+  width: 100%;
+  text-align: center;
+}
+
+.todo-items .todo-item.completed,
+.todo-items .todo-item.completed .due-date,
+.todo-items .todo-item.completed .buttons button {
+  color: grey;
+}
+
+/* FORM */
+
+.form {
+  display: none;
+  flex-direction: column;
+  padding: 12px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.form > input {
+  width: 100%;
+  height: 22px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  outline: none;
+  border: none;
+}
+
+.flex {
+  display: flex;
+  column-gap: 4px;
+}
+
+.form .buttons {
+  display: flex;
+  column-gap: 2px;
+}
+
+.form > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form .buttons button {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.show {
+  display: flex;
 }
