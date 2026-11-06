@@ -24,9 +24,13 @@ export function addProject(projectName) {
 }
 
 export function getProjectIdByName(projectName) {
-  const existingProjects = getProjects()
-  const filteredProjects = existingProjects.filter((storedProjectItem) => storedProjectItem.projectName === projectName)
-  return filteredProjects[0].id;
+  const existingProjects = getProjects();
+
+  const project = existingProjects.find(
+    (storedProjectItem) => storedProjectItem.projectName === projectName
+  );
+
+  return project ? project.id : null;
 }
 
 export function getPojectNameByTodo(todo) {
