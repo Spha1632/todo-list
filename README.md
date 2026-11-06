@@ -1,2 +1,2 @@
-# webpack-template
-This is a template for webpack
+# todo-list
+In this project i will be working with webapck and  showcasing my SOLID principles
